@@ -5,7 +5,8 @@ void insertion_sort_list(listint_t **list)
     if (*list == NULL || (*list)->next == NULL)
         return;
 
-    listint_t *sorted = *list;
+    listint_t *sorted;
+    sorted = *list;
     listint_t *current = sorted->next;
 
     while (current != NULL)
