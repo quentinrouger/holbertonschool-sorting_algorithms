@@ -1,17 +1,15 @@
 #include "sort.h"
 
-/**
- * insertion_sort_list - Trie une liste doublement chaînée d'entiers en utilisant l'algorithme d'insertion.
- *
- * @list: Pointeur vers le pointeur de la liste à trier.
- */
 void insertion_sort_list(listint_t **list)
 {
 	if (*list == NULL || (*list)->next == NULL)
 		return;
 
-	listint_t *sorted = *list; // Pointeur vers la position triée actuelle
-	listint_t *current = sorted->next; // Pointeur vers le nœud suivant
+	listint_t *sorted;
+	listint_t *current;
+
+	sorted = *list;
+	current = sorted->next;
 
 	while (current != NULL)
 	{
