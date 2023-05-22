@@ -40,7 +40,5 @@ void insertion_sort_list(listint_t **list)
         sorted = current;  /* Met à jour le pointeur vers la position triée actuelle */
         current = next;  /* Passe au prochain nœud */
 
-        /* Affichage de la liste après l'échange */
-        print_list(*list);
     }
 }
