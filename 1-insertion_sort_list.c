@@ -2,45 +2,27 @@
 
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *sorted;
+    listint_t **sorted;
     listint_t *current;
+    listint_t **insertion_point;
 
     if (*list == NULL || (*list)->next == NULL)
         return;
 
-    sorted = *list;
-    current = sorted->next;
-
-    while (current != NULL)
+    sorted = list;
+    insertion_point = sorted;
+    while ((*sorted)->next && (*sorted)->next != NULL)
     {
-        listint_t *insertion_point = sorted;
-        listint_t *next = current->next;
-
-        while (insertion_point != NULL && insertion_point->n > current->n)
-        {
-            insertion_point = insertion_point->prev;
-        }
-
-        if (insertion_point == NULL)
-        {
-            current->prev = NULL;
-            current->next = sorted;
-            sorted->prev = current;
-            sorted = current;
-        }
-        else
-        {
-            current->prev = insertion_point;
-            current->next = insertion_point->next;
-
-            if (insertion_point->next != NULL)
-                insertion_point->next->prev = current;
-
-            insertion_point->next = current;
-        }
-
-        current = next;
+        (*sorted) = (*sorted)->next;
     }
-
-    *list = sorted;
+    while ((*sorted)->prev && (*sorted)->prev == NULL)
+    {
+        current = (*sorted)->prev;
+        if ((current->n) > ((*sorted)->n))/*sorted doit etre toujours superieur a courent*/
+        {
+            (*insertion_point)->prev = current;
+        }     
+        (*sorted) = (*sorted)->prev;
+    }
+    (*list) = (*insertion_point);
 }
