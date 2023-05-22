@@ -1,44 +1,48 @@
 #include "sort.h"
 
+/**
+ * insertion_sort_list - Trie une liste doublement chaînée d'entiers en utilisant l'algorithme d'insertion.
+ *
+ * @list: Pointeur vers le pointeur de la liste à trier.
+ */
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *sorted = NULL;  /* Pointeur vers la position triée actuelle */
-    listint_t *current = *list;  /* Pointeur vers le nœud actuel */
+	if (*list == NULL || (*list)->next == NULL)
+		return;
 
-    if (*list == NULL || (*list)->next == NULL)
-        return;
+	listint_t *sorted = *list; // Pointeur vers la position triée actuelle
+	listint_t *current = sorted->next; // Pointeur vers le nœud suivant
 
-    while (current != NULL)
-    {
-        listint_t *next = current->next;  /* Pointeur vers le prochain nœud */
+	while (current != NULL)
+	{
+		listint_t *insertion_point = sorted;
+		listint_t *next = current->next;
 
-        while (sorted != NULL && sorted->n > current->n)
-        {
-            sorted = sorted->prev;  /* Déplace le pointeur vers la gauche */
-        }
+		while (insertion_point != NULL && insertion_point->n > current->n)
+		{
+			insertion_point = insertion_point->prev;
+		}
 
-        if (sorted == NULL)
-        {
-            /* Insère le nœud au début de la liste */
-            current->prev = NULL;
-            current->next = *list;
-            (*list)->prev = current;
-            *list = current;
-        }
-        else
-        {
-            /* Insère le nœud à la position triée appropriée */
-            current->prev = sorted;
-            current->next = sorted->next;
+		if (insertion_point == NULL)
+		{
+			current->prev = NULL;
+			current->next = sorted;
+			sorted->prev = current;
+			sorted = current;
+		}
+		else
+		{
+			current->prev = insertion_point;
+			current->next = insertion_point->next;
 
-            if (sorted->next != NULL)
-                sorted->next->prev = current;
+			if (insertion_point->next != NULL)
+				insertion_point->next->prev = current;
 
-            sorted->next = current;
-        }
+			insertion_point->next = current;
+		}
 
-        sorted = current;  /* Met à jour le pointeur vers la position triée actuelle */
-        current = next;  /* Passe au prochain nœud */
+		current = next;
+	}
 
-    }
+	*list = sorted;
 }
