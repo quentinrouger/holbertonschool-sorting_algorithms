@@ -41,6 +41,6 @@ void insertion_sort_list(listint_t **list)
         current = next;  /* Passe au prochain nœud */
 
         /* Affichage de la liste après l'échange */
-        print_list(*list);
+        print_list(&list);
     }
 }
