@@ -6,8 +6,10 @@ void insertion_sort_list(listint_t **list)
         return;
 
     listint_t *sorted;
+    listint_t *current;
+
     sorted = *list;
-    listint_t *current = sorted->next;
+    current = sorted->next;
 
     while (current != NULL)
     {
@@ -42,3 +44,4 @@ void insertion_sort_list(listint_t **list)
 
     *list = sorted;
 }
+
