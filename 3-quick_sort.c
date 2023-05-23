@@ -4,38 +4,51 @@ void quick_sort(int *array, size_t size)
 {
     size_t deb = 0;
     size_t fin = size - 1;
-    partition(array, deb, fin);
+    if (array == NULL)
+        return;
+    if (size <= 1)
+        return;
+    partition(array, deb, fin, size);
     print_array(array, size);
 }
 
-void partition(int *array, size_t deb, size_t fin)
+void changement(int *p1, int *p2)
 {
-    int pivot = array[fin];
-    size_t i = deb - 1;
-    size_t j = 0;
     int temp;
-    size_t ipivot;
+    temp = *p1;
+    *p1 = *p2;
+    *p2 = temp;
+}
 
+void quick_sort_desieme(int *array, int deb, int fin, int size)
+{
     if (deb < fin)
     {
-        for (j = deb; j < fin; j++)
-        {
-            if (array[j] <= pivot)
-            {
-                i++;
-                temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-        }
-        
-        temp = array[i + 1];
-        array[i + 1] = array[fin];
-        array[fin] = temp;
-        
-        ipivot = i + 1;
-        
-        partition(array, deb, ipivot - 1);
-        partition(array, ipivot + 1, fin);
+        int pivot = partition(array, deb, fin, size);
+        quick_sort_desieme(array, deb, pivot -1, size);
+        quick_sort_desieme(array, fin, pivot +1, size);
     }
+}
+
+int partition(int *array, int deb, int fin, int size)
+{
+    int pivot = array[fin];
+    int i = deb;
+    int j = 0;
+    
+     for (j = deb; j < fin; j++)
+    {
+        if (array[j] < pivot)
+        {
+            changement(&array[j], &array[i]);
+            print_array(array, size);
+        }
+        i++;
+    }
+    if (array[i] > pivot)
+    {
+        changement(&array[i], &array[fin]);
+        print_array(array, size);
+    }
+    return (i);
 }
