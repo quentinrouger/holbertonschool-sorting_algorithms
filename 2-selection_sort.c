@@ -19,11 +19,12 @@ void selection_sort(int *array, size_t size)
             if (array[j] < array[init])
                 init = j;
         }
-        if (init != i)
+        if (array[i] != array[init])
         {
             temp = array[i];
             array[i] = array[init];
             array[init] = temp;
+            print_array(array, size);
         }
     }
 }
