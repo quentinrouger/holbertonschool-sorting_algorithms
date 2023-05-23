@@ -3,8 +3,7 @@
 /**
  * insertion_sort_list - function that sorts a doubly linked list
  * of integers in ascending order
- * @array: The array
- * @size: Number of elements in the array
+ * @list: The linked list
  *
 */
 void insertion_sort_list(listint_t **list)
