@@ -10,12 +10,15 @@ void quick_sort(int *array, size_t size)
 
 void partition(int *array, size_t deb, size_t fin)
 {
+    int pivot = array[fin];
+    size_t i = deb - 1;
+    size_t j = 0;
+    int temp;
+    size_t ipivot;
+
     if (deb < fin)
     {
-        int pivot = array[fin];
-        size_t i = deb - 1;
-        
-        for (size_t j = deb; j < fin; j++)
+        for (j = deb; j < fin; j++)
         {
             if (array[j] <= pivot)
             {
@@ -26,11 +29,11 @@ void partition(int *array, size_t deb, size_t fin)
             }
         }
         
-        int temp = array[i + 1];
+        temp = array[i + 1];
         array[i + 1] = array[fin];
         array[fin] = temp;
         
-        size_t ipivot = i + 1;
+        ipivot = i + 1;
         
         partition(array, deb, ipivot - 1);
         partition(array, ipivot + 1, fin);
