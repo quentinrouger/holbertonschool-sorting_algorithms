@@ -24,5 +24,5 @@ void insertion_sort_list(listint_t **list)
         }     
         (*sorted) = (*sorted)->prev;
     }
-    (*list) = (*insertion_point);
+    list = insertion_point;
 }
