@@ -23,7 +23,7 @@ void partition(int *array, size_t deb, size_t fin)
             if (array[j] <= pivot)
             {
                 i++;
-                int temp = array[i];
+                temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
             }
