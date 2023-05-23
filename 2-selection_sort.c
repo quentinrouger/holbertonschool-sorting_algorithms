@@ -2,8 +2,8 @@
 
 /**
  * selection_sort - Trie un tableau d'entiers par ordre croissant en utilisant
- *                  l'algorithme de tri par sélection.
- * @array: Le tableau d'entiers à trier.
+ *                  l'algorithme de tri par selection.
+ * @array: Le tableau d'entiers a trier.
  * @size: La taille du tableau.
  */
 void selection_sort(int *array, size_t size)
